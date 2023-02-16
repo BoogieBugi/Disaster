@@ -1,6 +1,7 @@
 package com.boogiebugi.naturaldisaster.inventories;
 
 import com.boogiebugi.naturaldisaster.NaturalDisaster;
+import com.boogiebugi.naturaldisaster.disasters.BlackHole;
 import com.boogiebugi.naturaldisaster.disasters.Tornado;
 import com.boogiebugi.naturaldisaster.disasters.Tsunami;
 import com.boogiebugi.naturaldisaster.utils.DisasterManager;
@@ -53,6 +54,13 @@ public class DisasterSpawnInventory implements Listener {
         meta3.setLore(Arrays.asList("Click To Spawn"));
         feather.setItemMeta(meta3);
         inv.setItem(2, feather);
+
+        ItemStack blackConcrete = new ItemStack(Material.BLACK_CONCRETE);
+        ItemMeta meta4 = feather.getItemMeta();
+        meta4.setDisplayName(plugin.convertColorText("&lBlack Hole"));
+        meta4.setLore(Arrays.asList("Click To Spawn"));
+        blackConcrete.setItemMeta(meta4);
+        inv.setItem(3, blackConcrete);
     }
 
     @EventHandler
@@ -81,6 +89,11 @@ public class DisasterSpawnInventory implements Listener {
             } else if (slot == 2) {
                 Tornado tornado = new Tornado(loc);
                 tornado.onOccur();
+                player.playSound(player, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.0f);
+                player.closeInventory();
+            } else if (slot == 3) {
+                BlackHole blackHole = new BlackHole(loc);
+                blackHole.onOccur();
                 player.playSound(player, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.0f);
                 player.closeInventory();
             }

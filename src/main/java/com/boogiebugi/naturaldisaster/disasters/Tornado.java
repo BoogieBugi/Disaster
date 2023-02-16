@@ -19,7 +19,7 @@ public class Tornado extends Disaster {
     public void onOccur() {
         super.onOccur();
         tornadoTask = new TornadoTask(this);
-        tornadoTask.runTaskTimer(NaturalDisaster.plugin, 0L, 1L);
+        tornadoTask.runTaskTimer(NaturalDisaster.plugin, 60L, 1L);
     }
 
     @Override
@@ -38,6 +38,7 @@ final class TornadoTask extends BukkitRunnable {
 
     private final Tornado tornado;
     private final Location loc;
+    private final World world;
 
     private Location targetLoc;
     private int tick = 140;
@@ -46,11 +47,11 @@ final class TornadoTask extends BukkitRunnable {
     public TornadoTask(Tornado tornado) {
         this.tornado = tornado;
         this.loc = tornado.getLocation();
+        this.world = loc.getWorld();
     }
 
     @Override
     public void run() {
-        World world = loc.getWorld();
         for (double x = -16; x <= 16; x++) {
             for (double y = -1; y <= 15; y++) {
                 for (double z = -16; z <= 16; z++) {
@@ -67,7 +68,6 @@ final class TornadoTask extends BukkitRunnable {
                     }
 
                     world.spawnFallingBlock(blockLoc.add(0, 1.2, 0), material, block.getData());
-
                 }
             }
         }
