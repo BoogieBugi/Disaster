@@ -1,0 +1,5 @@
+name: NaturalDisaster
+author: BoogieBugi
+main: com.boogiebugi.naturaldisaster.NaturalDisaster
+version: 1.0.0
+api-version: 1.19
