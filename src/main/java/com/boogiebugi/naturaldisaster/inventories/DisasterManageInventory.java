@@ -54,6 +54,10 @@ public class DisasterManageInventory implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         if (event.getView().getTitle().equals(plugin.convertColorText("&lDisaster Manage"))) {
+            if (event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR)) {
+                return ;
+            }
+
             event.setCancelled(true);
             Player player = (Player) event.getWhoClicked();
             Disaster disaster = DisasterManager.inProgress.get(event.getSlot());
