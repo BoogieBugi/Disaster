@@ -1,6 +1,7 @@
 package com.boogiebugi.naturaldisaster.inventories;
 
 import com.boogiebugi.naturaldisaster.NaturalDisaster;
+import com.boogiebugi.naturaldisaster.disasters.Tornado;
 import com.boogiebugi.naturaldisaster.disasters.Tsunami;
 import com.boogiebugi.naturaldisaster.utils.DisasterManager;
 import org.bukkit.Bukkit;
@@ -75,6 +76,11 @@ public class DisasterSpawnInventory implements Listener {
             } else if (slot == 1) {
                 Tsunami lavaTsunami = new Tsunami(Material.LAVA, loc);
                 lavaTsunami.onOccur();
+                player.playSound(player, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.0f);
+                player.closeInventory();
+            } else if (slot == 2) {
+                Tornado tornado = new Tornado(loc);
+                tornado.onOccur();
                 player.playSound(player, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0f, 1.0f);
                 player.closeInventory();
             }

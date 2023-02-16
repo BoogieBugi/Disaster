@@ -45,9 +45,9 @@ public class Tsunami extends Disaster {
 
 final class TsunamiTask extends BukkitRunnable {
 
-    private Tsunami tsunami;
-    private Location loc;
-    private Material material;
+    private final Tsunami tsunami;
+    private final Location loc;
+    private final Material material;
     private int radius = 1;
 
     public TsunamiTask(Tsunami tsunami) {
